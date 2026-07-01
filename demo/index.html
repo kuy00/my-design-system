@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="ko" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Design System — 컴포넌트 데모</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+/* TOKENS:START — generated from tokens.json, do not edit */
+/* My Design System — Web (CSS Variables). Generated from tokens.json — do not edit by hand. */
+
+:root {
+  --color-primary: #7C3AED;
+  --color-background: #FFFFFF;
+  --color-surface: #FAF9FC;
+  --color-border: #ECE9F5;
+  --color-text: #1C1B22;
+  --color-text-muted: #6B6A76;
+  --color-accent: #2563EB;
+  --color-success: #16A34A;
+  --color-error: #DC2626;
+
+  --shadow-sm: 0 1px 2px rgba(0,0,0,0.06);
+  --shadow-md: 0 4px 14px rgba(124,58,237,0.20);
+  --glow-primary: 0 0 20px rgba(124,58,237,0.35);
+
+  --font-family: 'Space Grotesk', Pretendard, 'Noto Sans KR', sans-serif;
+  --font-size-h1: 40px;
+  --font-size-h2: 28px;
+  --font-size-h3: 20px;
+  --font-size-body: 16px;
+  --font-size-caption: 13px;
+  --font-weight-regular: 400;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+
+  --space-xs: 4px;
+  --space-sm: 8px;
+  --space-md: 16px;
+  --space-lg: 24px;
+  --space-xl: 40px;
+  --radius-sm: 6px;
+  --radius-md: 8px;
+  --radius-lg: 10px;
+  --radius-full: 999px;
+  --bp-sm: 640px;
+  --bp-md: 768px;
+  --bp-lg: 1024px;
+  --bp-xl: 1280px;
+}
+
+[data-theme="dark"] {
+  --color-background: #0D1117;
+  --color-surface: #161B22;
+  --color-border: #30363D;
+  --color-text: #E6EDF3;
+  --color-text-muted: #8B949E;
+  --color-accent: #58A6FF;
+  --color-success: #3FB950;
+  --color-error: #FF7B72;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --color-background: #0D1117;
+    --color-surface: #161B22;
+    --color-border: #30363D;
+    --color-text: #E6EDF3;
+    --color-text-muted: #8B949E;
+    --color-accent: #58A6FF;
+    --color-success: #3FB950;
+    --color-error: #FF7B72;
+  }
+}
+/* TOKENS:END */
+
+/* ── base ── */
+* { box-sizing:border-box; margin:0; padding:0; }
+body {
+  font-family:var(--font-family); background:var(--color-background); color:var(--color-text);
+  transition:background .25s, color .25s; padding:var(--space-xl) var(--space-lg); line-height:1.6;
+}
+.wrap { max-width:1120px; margin:0 auto; }
+h1 { font-size:2.5rem; font-weight:700; letter-spacing:-.02em; line-height:1.15; }
+h2 { font-size:1.25rem; font-weight:600; margin:var(--space-xl) 0 var(--space-md); padding-bottom:var(--space-sm); border-bottom:1px solid var(--color-border); }
+.sub { color:var(--color-text-muted); margin-top:var(--space-xs); }
+.row { display:flex; gap:var(--space-md); flex-wrap:wrap; align-items:center; }
+.stack { display:flex; flex-direction:column; gap:var(--space-md); }
+.label { font-size:.8125rem; color:var(--color-text-muted); width:100%; margin-bottom:calc(-1*var(--space-sm)); }
+
+/* ── header / theme toggle ── */
+header { display:flex; justify-content:space-between; align-items:flex-start; gap:var(--space-md); flex-wrap:wrap; }
+.theme-btn {
+  font-family:inherit; cursor:pointer; font-weight:600; font-size:.875rem;
+  background:var(--color-surface); color:var(--color-text); border:1px solid var(--color-border);
+  border-radius:var(--radius-full); padding:10px 18px;
+}
+
+/* ── Buttons ── */
+button.c, a.c { font-family:inherit; cursor:pointer; font-weight:600; font-size:.875rem;
+  border:1px solid transparent; border-radius:var(--radius-md); padding:11px 20px; text-decoration:none; display:inline-block; }
+.btn-primary { background:var(--color-primary); color:#fff; }
+[data-theme="dark"] .btn-primary { box-shadow:var(--glow-primary); }
+:root:not([data-theme="dark"]) .btn-primary { box-shadow:var(--shadow-md); }
+.btn-primary:hover { filter:brightness(1.08); }
+.btn-primary:active { filter:brightness(.92); }
+.btn-ghost { background:var(--color-surface); color:var(--color-text); border-color:var(--color-border); }
+.btn-ghost:hover { border-color:var(--color-primary); }
+.btn-success { background:color-mix(in srgb, var(--color-success) 15%, transparent); color:var(--color-success); border-color:color-mix(in srgb, var(--color-success) 40%, transparent); }
+.btn-danger { background:color-mix(in srgb, var(--color-error) 15%, transparent); color:var(--color-error); border-color:color-mix(in srgb, var(--color-error) 40%, transparent); }
+.btn-primary:disabled { opacity:.5; cursor:not-allowed; filter:none; }
+a.link { color:var(--color-accent); font-weight:600; text-decoration:none; }
+a.link:hover { text-decoration:underline; }
+
+/* ── Card ── */
+.card { background:var(--color-surface); border:1px solid var(--color-border); border-radius:var(--radius-lg);
+  padding:var(--space-md); max-width:320px; }
+:root:not([data-theme="dark"]) .card { box-shadow:var(--shadow-sm); }
+.card h3 { font-size:1.25rem; font-weight:600; margin-bottom:var(--space-xs); }
+.card p { color:var(--color-text-muted); font-size:.9rem; margin-bottom:var(--space-md); }
+
+/* ── Input / Select ── */
+input.field, select.field { font-family:inherit; font-size:.9rem; width:100%; max-width:280px;
+  background:var(--color-background); color:var(--color-text); border:1px solid var(--color-border);
+  border-radius:var(--radius-md); padding:11px 14px; }
+input.field:focus, select.field:focus { outline:none; border-color:var(--color-primary); box-shadow:0 0 0 3px color-mix(in srgb, var(--color-primary) 25%, transparent); }
+input.err { border-color:var(--color-error); }
+.err-msg { color:var(--color-error); font-size:.8125rem; }
+
+/* ── Tag ── */
+.tag { display:inline-block; background:color-mix(in srgb, var(--color-primary) 15%, transparent);
+  color:var(--color-primary); border-radius:var(--radius-sm); padding:4px 12px; font-size:.8125rem; font-weight:600; }
+
+/* ── Checkbox / Radio ── */
+.opt { display:flex; align-items:center; gap:var(--space-sm); cursor:pointer; font-size:.9rem; }
+.opt input { appearance:none; width:18px; height:18px; background:var(--color-background); border:1px solid var(--color-border); cursor:pointer; position:relative; flex:none; }
+.opt input[type=checkbox] { border-radius:var(--radius-sm); }
+.opt input[type=radio] { border-radius:var(--radius-full); }
+.opt input:checked { background:var(--color-primary); border-color:var(--color-primary); }
+.opt input[type=checkbox]:checked::after { content:''; position:absolute; left:5px; top:1.5px; width:5px; height:9px; border:solid #fff; border-width:0 2px 2px 0; transform:rotate(45deg); }
+.opt input[type=radio]:checked { background:var(--color-background); }
+.opt input[type=radio]:checked::after { content:''; position:absolute; inset:3px; border-radius:50%; background:var(--color-primary); }
+
+/* ── Toggle / Switch ── */
+.switch { position:relative; width:44px; height:24px; flex:none; cursor:pointer; }
+.switch input { display:none; }
+.track { position:absolute; inset:0; background:var(--color-border); border-radius:var(--radius-full); transition:background .2s; }
+.thumb { position:absolute; top:2px; left:2px; width:20px; height:20px; background:#fff; border-radius:50%; transition:transform .2s; box-shadow:0 1px 2px rgba(0,0,0,.3); }
+.switch input:checked + .track { background:var(--color-primary); }
+.switch input:checked + .track .thumb { transform:translateX(20px); }
+
+/* ── Navigation ── */
+nav.demo-nav { display:flex; gap:var(--space-xs); background:var(--color-surface); border:1px solid var(--color-border);
+  border-radius:var(--radius-lg); padding:var(--space-xs); width:fit-content; }
+nav.demo-nav a { padding:8px 14px; border-radius:var(--radius-md); color:var(--color-text-muted); text-decoration:none; font-weight:500; font-size:.9rem; }
+nav.demo-nav a:hover { color:var(--color-text); }
+nav.demo-nav a.active { color:var(--color-primary); background:color-mix(in srgb, var(--color-primary) 12%, transparent); }
+
+/* ── Alerts ── */
+.alert { border-radius:var(--radius-md); padding:var(--space-md); font-size:.9rem; border:1px solid var(--color-border); background:var(--color-surface); max-width:420px; }
+.alert.success { background:color-mix(in srgb, var(--color-success) 12%, transparent); color:var(--color-success); border-color:color-mix(in srgb, var(--color-success) 35%, transparent); }
+.alert.error { background:color-mix(in srgb, var(--color-error) 12%, transparent); color:var(--color-error); border-color:color-mix(in srgb, var(--color-error) 35%, transparent); }
+
+/* ── Modal ── */
+.overlay { position:fixed; inset:0; background:rgba(0,0,0,.6); display:none; align-items:center; justify-content:center; padding:var(--space-lg); z-index:100; }
+.overlay.open { display:flex; }
+.modal { background:var(--color-surface); border:1px solid var(--color-border); border-radius:var(--radius-lg); padding:var(--space-lg); width:min(90vw,480px); }
+:root:not([data-theme="dark"]) .modal { box-shadow:var(--shadow-md); }
+.modal h3 { font-size:1.25rem; font-weight:600; margin-bottom:var(--space-sm); }
+.modal p { color:var(--color-text-muted); margin-bottom:var(--space-lg); }
+
+/* ── Toast ── */
+.toast { position:fixed; bottom:var(--space-lg); right:var(--space-lg); background:var(--color-surface); color:var(--color-text);
+  border:1px solid var(--color-border); border-radius:var(--radius-md); padding:var(--space-md) var(--space-lg); box-shadow:var(--shadow-md);
+  transform:translateY(120%); transition:transform .3s; z-index:200; }
+.toast.show { transform:translateY(0); }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div>
+      <h1>My Design System</h1>
+      <p class="sub">Stitch DESIGN.md 스펙 준수 · 다크(기본) + 라이트 · 퍼플 액센트 공유</p>
+    </div>
+    <button class="theme-btn" onclick="toggleTheme()" id="themeBtn">☀️ 라이트로</button>
+  </header>
+
+  <h2>Buttons</h2>
+  <div class="row">
+    <button class="c btn-primary">Primary</button>
+    <button class="c btn-ghost">Ghost</button>
+    <button class="c btn-success">Success</button>
+    <button class="c btn-danger">Danger</button>
+    <button class="c btn-primary" disabled>Disabled</button>
+    <a href="#" class="link">텍스트 링크 →</a>
+  </div>
+
+  <h2>Form Controls</h2>
+  <div class="stack">
+    <div class="row" style="align-items:flex-start; gap:var(--space-lg);">
+      <div class="stack" style="gap:var(--space-sm);">
+        <span class="label">Input</span>
+        <input class="field" placeholder="기본 입력 필드">
+      </div>
+      <div class="stack" style="gap:var(--space-sm);">
+        <span class="label">Input (error)</span>
+        <input class="field err" value="잘못된 값">
+        <span class="err-msg">올바른 값을 입력하세요.</span>
+      </div>
+      <div class="stack" style="gap:var(--space-sm);">
+        <span class="label">Select</span>
+        <select class="field"><option>옵션 A</option><option>옵션 B</option><option>옵션 C</option></select>
+      </div>
+    </div>
+    <div class="row" style="gap:var(--space-xl); margin-top:var(--space-md);">
+      <label class="opt"><input type="checkbox" checked> Checkbox (checked)</label>
+      <label class="opt"><input type="checkbox"> Checkbox</label>
+      <label class="opt"><input type="radio" name="r" checked> Radio (checked)</label>
+      <label class="opt"><input type="radio" name="r"> Radio</label>
+      <label class="switch"><input type="checkbox" checked><span class="track"><span class="thumb"></span></span></label>
+      <label class="switch"><input type="checkbox"><span class="track"><span class="thumb"></span></span></label>
+    </div>
+  </div>
+
+  <h2>Card · Tag · Navigation</h2>
+  <div class="row" style="align-items:flex-start;">
+    <div class="card">
+      <h3>카드 컴포넌트</h3>
+      <p>surface 배경 + border 테두리. 다크는 그림자 없음, 라이트는 부드러운 그림자.</p>
+      <div class="row" style="gap:var(--space-sm);"><span class="tag">태그</span><span class="tag">Badge</span></div>
+    </div>
+    <nav class="demo-nav">
+      <a href="#" class="active">Home</a>
+      <a href="#">Projects</a>
+      <a href="#">Settings</a>
+    </nav>
+  </div>
+
+  <h2>Alerts</h2>
+  <div class="stack">
+    <div class="alert">기본 알림(info) — surface 배경 + border.</div>
+    <div class="alert success">✓ 성공적으로 저장되었습니다.</div>
+    <div class="alert error">✕ 오류가 발생했습니다. 다시 시도하세요.</div>
+  </div>
+
+  <h2>Modal · Toast</h2>
+  <div class="row">
+    <button class="c btn-primary" onclick="openModal()">모달 열기</button>
+    <button class="c btn-ghost" onclick="showToast()">토스트 띄우기</button>
+  </div>
+</div>
+
+<div class="overlay" id="overlay" onclick="if(event.target===this)closeModal()">
+  <div class="modal">
+    <h3>모달 / 다이얼로그</h3>
+    <p>오버레이 rgba(0,0,0,.6) + surface 본체. 최대폭 480px, radius 10px.</p>
+    <div class="row" style="justify-content:flex-end;">
+      <button class="c btn-ghost" onclick="closeModal()">취소</button>
+      <button class="c btn-primary" onclick="closeModal()">확인</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast">✓ 토스트 알림입니다.</div>
+
+<script>
+function toggleTheme(){
+  const html=document.documentElement;
+  const dark=html.getAttribute('data-theme')==='dark';
+  html.setAttribute('data-theme', dark?'light':'dark');
+  document.getElementById('themeBtn').textContent = dark ? '🌙 다크로' : '☀️ 라이트로';
+}
+function openModal(){ document.getElementById('overlay').classList.add('open'); }
+function closeModal(){ document.getElementById('overlay').classList.remove('open'); }
+let tt;
+function showToast(){ const t=document.getElementById('toast'); t.classList.add('show'); clearTimeout(tt); tt=setTimeout(()=>t.classList.remove('show'),2500); }
+</script>
+</body>
+</html>

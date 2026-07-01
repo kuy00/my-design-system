@@ -1,0 +1,17 @@
+{
+  "name": "my-design-system",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "다크+라이트 퍼플 디자인 시스템. DESIGN.md를 유일 원천으로 tokens.json·5개 플랫폼 파일·데모를 생성한다.",
+  "scripts": {
+    "lint:design": "node validate.mjs",
+    "build": "node build.mjs",
+    "watch": "node build.mjs --watch",
+    "check": "node validate.mjs && node build.mjs"
+  },
+  "devDependencies": {
+    "style-dictionary": "^4.3.0",
+    "yaml": "^2.5.0"
+  }
+}

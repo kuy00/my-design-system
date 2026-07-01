@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- My Design System — Android LIGHT palette. Generated from tokens.json — do not edit by hand.
+     Place in res/values/colors.xml -->
+<resources>
+    <color name="brand_primary">#7C3AED</color>
+    <color name="brand_accent_dark">#58A6FF</color>
+    <color name="brand_accent_light">#2563EB</color>
+
+    <color name="background">#FFFFFF</color>
+    <color name="surface">#FAF9FC</color>
+    <color name="border">#ECE9F5</color>
+    <color name="text">#1C1B22</color>
+    <color name="text_muted">#6B6A76</color>
+    <color name="primary">#7C3AED</color>
+    <color name="accent">#2563EB</color>
+    <color name="success">#16A34A</color>
+    <color name="error">#DC2626</color>
+</resources>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- My Design System — Android spacing / radius / type scale. Generated from tokens.json — do not edit by hand.
+     Place in res/values/dimens.xml -->
+<resources>
+    <!-- spacing -->
+    <dimen name="space_xs">4dp</dimen>
+    <dimen name="space_sm">8dp</dimen>
+    <dimen name="space_md">16dp</dimen>
+    <dimen name="space_lg">24dp</dimen>
+    <dimen name="space_xl">40dp</dimen>
+
+    <!-- radius -->
+    <dimen name="radius_sm">6dp</dimen>
+    <dimen name="radius_md">8dp</dimen>
+    <dimen name="radius_lg">10dp</dimen>
+    <dimen name="radius_full">999dp</dimen>
+
+    <!-- type scale -->
+    <dimen name="font_h1">40sp</dimen>
+    <dimen name="font_h2">28sp</dimen>
+    <dimen name="font_h3">20sp</dimen>
+    <dimen name="font_body">16sp</dimen>
+    <dimen name="font_caption">13sp</dimen>
+</resources>
