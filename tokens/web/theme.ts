@@ -16,6 +16,10 @@ export const light = {
   accent: '#2563EB',
   success: '#16A34A',
   error: '#DC2626',
+  primarySubtle: '#E8DEFA',
+  accentSubtle: '#DCE4FA',
+  successSubtle: '#DAEDE3',
+  errorSubtle: '#F6DBDE',
 } as const;
 
 export const dark = {
@@ -28,6 +32,10 @@ export const dark = {
   accent: '#58A6FF',
   success: '#3FB950',
   error: '#FF7B72',
+  primarySubtle: '#262042',
+  accentSubtle: '#213145',
+  successSubtle: '#1D3429',
+  errorSubtle: '#3B2A2F',
 } as const;
 
 export const typography = {
@@ -38,7 +46,7 @@ export const typography = {
 } as const;
 
 export const spacing = { xs: 4, sm: 8, md: 16, lg: 24, xl: 40 } as const;
-export const radius = { sm: 6, md: 8, lg: 10, full: 999 } as const;
+export const radius = { sm: 6, md: 8, lg: 10, xl: 20, full: 999 } as const;
 export const breakpoints = { sm: 640, md: 768, lg: 1024, xl: 1280 } as const;
 
 export const elevation = {

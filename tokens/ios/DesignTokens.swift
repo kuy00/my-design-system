@@ -12,7 +12,7 @@ extension Color {
 }
 
 struct AppColorScheme {
-    let background, surface, border, text, textMuted, primary, accent, success, error: Color
+    let background, surface, border, text, textMuted, primary, accent, success, error, primarySubtle, accentSubtle, successSubtle, errorSubtle: Color
 }
 
 enum DesignTokens {
@@ -29,7 +29,11 @@ enum DesignTokens {
         primary: Color(hex: 0x7C3AED),
         accent: Color(hex: 0x2563EB),
         success: Color(hex: 0x16A34A),
-        error: Color(hex: 0xDC2626)
+        error: Color(hex: 0xDC2626),
+        primarySubtle: Color(hex: 0xE8DEFA),
+        accentSubtle: Color(hex: 0xDCE4FA),
+        successSubtle: Color(hex: 0xDAEDE3),
+        errorSubtle: Color(hex: 0xF6DBDE)
     )
 
     static let dark = AppColorScheme(
@@ -41,12 +45,16 @@ enum DesignTokens {
         primary: Color(hex: 0x7C3AED),
         accent: Color(hex: 0x58A6FF),
         success: Color(hex: 0x3FB950),
-        error: Color(hex: 0xFF7B72)
+        error: Color(hex: 0xFF7B72),
+        primarySubtle: Color(hex: 0x262042),
+        accentSubtle: Color(hex: 0x213145),
+        successSubtle: Color(hex: 0x1D3429),
+        errorSubtle: Color(hex: 0x3B2A2F)
     )
 
     static let fontFamily = "Space Grotesk"
     static let fsH1: CGFloat = 40, fsH2: CGFloat = 28, fsH3: CGFloat = 20, fsBody: CGFloat = 16, fsCaption: CGFloat = 13
     static let spaceXs: CGFloat = 4, spaceSm: CGFloat = 8, spaceMd: CGFloat = 16, spaceLg: CGFloat = 24, spaceXl: CGFloat = 40
-    static let radiusSm: CGFloat = 6, radiusMd: CGFloat = 8, radiusLg: CGFloat = 10, radiusFull: CGFloat = 999
+    static let radiusSm: CGFloat = 6, radiusMd: CGFloat = 8, radiusLg: CGFloat = 10, radiusXl: CGFloat = 20, radiusFull: CGFloat = 999
     static let bpSm: CGFloat = 640, bpMd: CGFloat = 768, bpLg: CGFloat = 1024, bpXl: CGFloat = 1280
 }

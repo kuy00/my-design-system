@@ -5,7 +5,7 @@ import { readFileSync, writeFileSync } from 'node:fs';
 import YAML from 'yaml';
 
 const HEADINGS = ['h1', 'h2', 'h3', 'body', 'caption'];
-const COLOR_ROLES = ['primary', 'accent', 'background', 'surface', 'border', 'text', 'textMuted', 'success', 'error'];
+const COLOR_ROLES = ['primary', 'accent', 'background', 'surface', 'border', 'text', 'textMuted', 'success', 'error', 'primarySubtle', 'accentSubtle', 'successSubtle', 'errorSubtle'];
 
 // 스펙 front matter로 표현 불가한 값 (DESIGN.md 프로즈와 동기화해 유지)
 const ELEVATION = {

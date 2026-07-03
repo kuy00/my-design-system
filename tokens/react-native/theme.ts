@@ -17,6 +17,10 @@ export const colors = {
     accent: '#2563EB',
     success: '#16A34A',
     error: '#DC2626',
+    primarySubtle: '#E8DEFA',
+    accentSubtle: '#DCE4FA',
+    successSubtle: '#DAEDE3',
+    errorSubtle: '#F6DBDE',
   },
   dark: {
     background: '#0D1117',
@@ -28,6 +32,10 @@ export const colors = {
     accent: '#58A6FF',
     success: '#3FB950',
     error: '#FF7B72',
+    primarySubtle: '#262042',
+    accentSubtle: '#213145',
+    successSubtle: '#1D3429',
+    errorSubtle: '#3B2A2F',
   },
 } as const;
 
@@ -37,7 +45,7 @@ export const fontSize = { h1: 40, h2: 28, h3: 20, body: 16, caption: 13 } as con
 export const fontWeight = { regular: '400', semibold: '600', bold: '700' } as const;
 export const lineHeight = { h1: 46, h2: 35, h3: 26, body: 26, caption: 20 } as const; // size * ratio, rounded
 export const spacing = { xs: 4, sm: 8, md: 16, lg: 24, xl: 40 } as const;
-export const radius = { sm: 6, md: 8, lg: 10, full: 999 } as const;
+export const radius = { sm: 6, md: 8, lg: 10, xl: 20, full: 999 } as const;
 export const breakpoints = { sm: 640, md: 768, lg: 1024, xl: 1280 } as const;
 
 export type Scheme = keyof typeof colors;

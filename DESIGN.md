@@ -13,6 +13,10 @@ colors:
   textMuted: "#8B949E"
   success: "#3FB950"
   error: "#FF7B72"
+  primarySubtle: "#262042"
+  accentSubtle: "#213145"
+  successSubtle: "#1D3429"
+  errorSubtle: "#3B2A2F"
 
 typography:
   fontFamily: "'Space Grotesk', 'Pretendard', 'Noto Sans KR', sans-serif"
@@ -26,6 +30,7 @@ rounded:
   sm: 6px
   md: 8px
   lg: 10px
+  xl: 20px
   full: 999px
 
 spacing:
@@ -48,12 +53,12 @@ components:
     rounded: "{rounded.md}"
     padding: "11px 20px"
   button-success:
-    backgroundColor: "{colors.success}"
+    backgroundColor: "{colors.successSubtle}"
     textColor: "{colors.success}"
     rounded: "{rounded.md}"
     padding: "11px 20px"
   button-danger:
-    backgroundColor: "{colors.error}"
+    backgroundColor: "{colors.errorSubtle}"
     textColor: "{colors.error}"
     rounded: "{rounded.md}"
     padding: "11px 20px"
@@ -70,7 +75,7 @@ components:
     padding: "11px 14px"
     typography: "{typography.body}"
   tag:
-    backgroundColor: "{colors.primary}"
+    backgroundColor: "{colors.primarySubtle}"
     textColor: "{colors.primary}"
     rounded: "{rounded.sm}"
     padding: "4px 12px"
@@ -114,7 +119,7 @@ components:
     rounded: "{rounded.md}"
     padding: "{spacing.xs}"
   select-option-active:
-    backgroundColor: "{colors.primary}"
+    backgroundColor: "{colors.primarySubtle}"
     textColor: "{colors.primary}"
   modal-overlay:
     backgroundColor: "rgba(0,0,0,0.6)"
@@ -129,15 +134,19 @@ components:
     rounded: "{rounded.md}"
     padding: "{spacing.md}"
   alert-success:
-    backgroundColor: "{colors.success}"
+    backgroundColor: "{colors.successSubtle}"
     textColor: "{colors.success}"
     rounded: "{rounded.md}"
     padding: "{spacing.md}"
   alert-error:
-    backgroundColor: "{colors.error}"
+    backgroundColor: "{colors.errorSubtle}"
     textColor: "{colors.error}"
     rounded: "{rounded.md}"
     padding: "{spacing.md}"
+  bottom-sheet:
+    backgroundColor: "{colors.surface}"
+    rounded: "{rounded.xl}"
+    padding: "28px 24px 40px"
 ---
 
 ## Overview
@@ -171,6 +180,14 @@ front matter의 `colors`는 **기본 모드(다크) 팔레트**다. 컴포넌트
 | textMuted | `#8B949E` | 보조/설명 텍스트 |
 | success | `#3FB950` | 성공·긍정 상태 |
 | error | `#FF7B72` | 오류·위험 상태 |
+| primarySubtle | `#262042` | primary 틴트 배경 — 칩·태그·활성 옵션 (surface 위 16% 사전 블렌드) |
+| accentSubtle | `#213145` | accent 틴트 배경 — 중간 단계 배지 등 |
+| successSubtle | `#1D3429` | success 틴트 배경 — 긍정 배지·알림 |
+| errorSubtle | `#3B2A2F` | error 틴트 배경 — 위험 배지·알림 |
+
+**틴트(-Subtle) 규칙.** 상태색을 옅게 깐 배경은 런타임 투명도(16% opacity 등)가 아니라 **사전 블렌드된 `-Subtle` 토큰**을 쓴다. 값은 `surface` 위에 다크 16% / 라이트 14%를 섞어 산출한다. 런타임 투명도는 플랫폼·디자인 툴에서 유실되기 쉽고(예: Figma 인스턴스·클론은 변수 바인딩된 paint의 opacity를 버린다), 사전 블렌드 값은 어디서나 동일하게 렌더링된다.
+
+**중간 단계 상태.** warning 색은 두지 않는다. 3단계 상태(점수 상·중·하 등)는 **success(상) · accent(중) · error(하)** 로 매핑해, 한 화면의 강조색을 늘리지 않으면서 단계를 구분한다.
 
 **라이트 모드 대체값**
 
@@ -185,8 +202,12 @@ front matter의 `colors`는 **기본 모드(다크) 팔레트**다. 컴포넌트
 | textMuted | `#6B6A76` |
 | success | `#16A34A` |
 | error | `#DC2626` |
+| primarySubtle | `#E8DEFA` |
+| accentSubtle | `#DCE4FA` |
+| successSubtle | `#DAEDE3` |
+| errorSubtle | `#F6DBDE` |
 
-**접근성:** 모든 텍스트/배경 조합은 최소 WCAG AA(4.5:1)를 만족한다. 다크 본문(`#E6EDF3`/`#0D1117`), 라이트 본문(`#1C1B22`/`#FFFFFF`), 퍼플 버튼 위 흰 텍스트 모두 통과.
+**접근성:** 모든 텍스트/배경 조합은 최소 WCAG AA(4.5:1)를 만족한다. 다크 본문(`#E6EDF3`/`#0D1117`), 라이트 본문(`#1C1B22`/`#FFFFFF`), 퍼플 버튼 위 흰 텍스트 모두 통과. 단 `-Subtle` 배경 위 동색 텍스트는 대비가 4.5:1 부근(primary 계열은 그 미만)이므로 **13px 이상 굵은 소형 라벨(배지·칩·태그)에 한정**하고 본문 텍스트에는 쓰지 않는다.
 
 ## Typography
 
@@ -230,7 +251,7 @@ front matter의 `colors`는 **기본 모드(다크) 팔레트**다. 컴포넌트
 
 ## Shapes
 
-기본 코너는 `rounded.md`(8px). 카드·모달은 조금 더 둥근 `rounded.lg`(10px), 태그·체크박스는 `rounded.sm`(6px), 토글·라디오·알약형 요소는 `rounded.full`(999px). 각지거나 과하게 둥근 코너는 지양하고 6~10px의 절제된 곡선을 일관되게 쓴다.
+기본 코너는 `rounded.md`(8px). 카드·모달은 조금 더 둥근 `rounded.lg`(10px), 태그·체크박스는 `rounded.sm`(6px), 토글·라디오·알약형 요소는 `rounded.full`(999px). 바텀 시트 등 화면 폭 대형 오버레이의 상단 코너만 예외적으로 `rounded.xl`(20px)을 쓴다. 각지거나 과하게 둥근 코너는 지양하고 일반 요소는 6~10px의 절제된 곡선을 일관되게 쓴다.
 
 ## Components
 
@@ -240,18 +261,20 @@ front matter의 `colors`는 **기본 모드(다크) 팔레트**다. 컴포넌트
 |---|---|---|
 | **Button / primary** | `primary` 배경, 흰 텍스트, radius 8px. 다크는 발광 그림자 | hover: 밝기 +8% · active: -8% · disabled: opacity 0.5 |
 | **Button / ghost** | `surface` 배경 + `border` 테두리, `text` 색 | hover: surface 밝기 변화 · focus: 테두리 primary |
-| **Button / success·danger** | 상태색을 옅게 깐 배경 + 동색 텍스트·테두리 | — |
+| **Button / success·danger** | `-Subtle` 배경 + 동색 텍스트·테두리 | — |
 | **Link** | `accent` 색 텍스트 | hover: 밑줄 |
 | **Card** | `surface` 배경 + `border` 테두리, radius 10px | 다크 그림자 없음 / 라이트 shadow · hover: 테두리 강조 |
 | **Input** | `background` 배경 + `border` 테두리, radius 8px | focus: 테두리 `primary` + 얇은 링 · error: 테두리 `error` |
-| **Tag / Badge** | `primary` 옅게 깐 배경 + `primary` 텍스트, radius 6px | — |
+| **Tag / Badge** | `primarySubtle` 배경 + `primary` 텍스트, radius 6px | 3단계 상태 배지는 success/accent/error Subtle 페어 |
 | **Navigation** | 항목 `textMuted`, 활성은 `primary` + 좌측/하단 인디케이터 | hover: text · active: primary |
 | **Toggle / Switch** | 트랙 44×24, off `border`/on `primary`, 흰 thumb 20px, radius full | on: 트랙 primary + thumb 슬라이드 |
 | **Checkbox** | 18px, `background` + `border`, radius 6px | checked: `primary` 배경 + 흰 체크 |
 | **Radio** | 18px, `background` + `border`, radius full | checked: `primary` + 내부 점 |
 | **Select / Dropdown** | Input과 동일 + 우측 chevron. 메뉴는 `surface`, radius 8px | focus: 테두리 primary · 옵션 active: primary 옅게 |
 | **Modal / Dialog** | 오버레이 `rgba(0,0,0,.6)`, 본체 `surface`, radius 10px, 최대폭 480px | 라이트 shadow / 다크 border로 깊이 |
-| **Toast / Alert** | 기본 `surface`. success/error는 상태색 옅게 깐 배경+동색 | success · error · info(기본) |
+| **Toast / Alert** | 기본 `surface`. success/error는 `-Subtle` 배경+동색 텍스트 | success · error · info(기본) |
+| **Bottom Sheet** | `surface` 배경, 상단만 `rounded.xl`(20px), 그래버 36×4 `border`색(상단 중앙 12px), 오버레이 `rgba(0,0,0,.6)` | 딤 탭·그래버 드래그로 닫기 · 라디오/체크 선택 시트는 탭 즉시 적용 |
+| **Chart** | 단일 시리즈는 `primary` 단색 — 라인 2px, 영역 채움 14%, 격자선 `border` 60%. 값·축 라벨은 텍스트 토큰(`text`/`textMuted`) | 상태 세그먼트는 success/accent/error · 끝점 도트 + 직접 라벨 |
 
 ## Do's and Don'ts
 
@@ -261,10 +284,12 @@ front matter의 `colors`는 **기본 모드(다크) 팔레트**다. 컴포넌트
 - ✅ 다크는 발광, 라이트는 그림자로 깊이를 준다.
 - ✅ 라이트 모드는 Colors 섹션의 대체값 표를 따른다.
 - ✅ 네이티브 앱에서는 내비/오버레이/피드백/폼컨트롤을 **네이티브 패턴 + 우리 토큰**으로 만든다 (Layout의 플랫폼 적응 참고).
+- ✅ 틴트 배경은 런타임 투명도 대신 **사전 블렌드된 `-Subtle` 토큰**을 쓴다 (툴·플랫폼에서 opacity 유실 방지).
 
 **Don't**
 - ❌ 본문·넓은 면적에 퍼플을 남용하지 않는다 (강조는 포인트로만).
 - ❌ 임의의 hex 색이나 임의 px 여백을 새로 만들지 않는다.
+- ❌ warning 등 새 상태색을 추가하지 않는다 — 3단계 상태는 success/accent/error로 매핑한다.
 - ❌ 한 화면에서 강조색을 두 개 이상 경쟁시키지 않는다.
 - ❌ 다크모드에서 강한 드롭섀도우를 쓰지 않는다 (발광으로 대체).
 - ❌ 터치 플랫폼(iOS/Android/RN)에 hover 전용 상호작용을 강제하지 않는다 (press로 대체).

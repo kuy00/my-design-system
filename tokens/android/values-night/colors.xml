@@ -11,4 +11,8 @@
     <color name="accent">#58A6FF</color>
     <color name="success">#3FB950</color>
     <color name="error">#FF7B72</color>
+    <color name="primary_subtle">#262042</color>
+    <color name="accent_subtle">#213145</color>
+    <color name="success_subtle">#1D3429</color>
+    <color name="error_subtle">#3B2A2F</color>
 </resources>

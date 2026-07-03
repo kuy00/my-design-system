@@ -16,7 +16,7 @@ const get = (tokens, ...path) => {
   const t = tokens.find((x) => x.path.join('.') === path.join('.'));
   return t ? val(t) : undefined;
 };
-const COLOR_ORDER = ['background', 'surface', 'border', 'text', 'textMuted', 'primary', 'accent', 'success', 'error'];
+const COLOR_ORDER = ['background', 'surface', 'border', 'text', 'textMuted', 'primary', 'accent', 'success', 'error', 'primarySubtle', 'accentSubtle', 'successSubtle', 'errorSubtle'];
 const orderColors = (arr) => [...arr].sort((a, b) => COLOR_ORDER.indexOf(a.path[2]) - COLOR_ORDER.indexOf(b.path[2]));
 const hex6 = (h) => h.replace('#', '').toUpperCase();
 const GEN = 'Generated from tokens.json — do not edit by hand.';
@@ -145,11 +145,9 @@ StyleDictionary.registerFormat({
 import 'package:flutter/material.dart';
 
 class AppColorScheme {
-  final Color background, surface, border, text, textMuted, primary, accent, success, error;
+  final Color ${COLOR_ORDER.join(', ')};
   const AppColorScheme({
-    required this.background, required this.surface, required this.border,
-    required this.text, required this.textMuted, required this.primary,
-    required this.accent, required this.success, required this.error,
+${COLOR_ORDER.map((r) => `    required this.${r},`).join('\n')}
   });
 }
 
@@ -203,7 +201,7 @@ extension Color {
 }
 
 struct AppColorScheme {
-    let background, surface, border, text, textMuted, primary, accent, success, error: Color
+    let ${COLOR_ORDER.join(', ')}: Color
 }
 
 enum DesignTokens {
